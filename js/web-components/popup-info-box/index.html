@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>PopUp Info Box</title>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <h2>PopUp Info Box WebComponent</h2>
+    <div>
+      <label for="cvv">Enter your CVV:
+        <popup-info 
+          img="img/alt.png" 
+          data-text="Your card validation code (CVC) is an extra security feature — it is the last 3 or 4 numbers on the back of your card."
+          alt="Info icon"
+        ></popup-info>
+      </label>
+      <input type="text" id="cvv">
+    </div>
+    <div>
+      <label for="name">Enter Name:
+        <popup-info
+          data-text="Your name on card."
+        ></popup-info>
+      </label>
+      <input type="text" id="name">
+    </div>
+  </body>
+</html>
