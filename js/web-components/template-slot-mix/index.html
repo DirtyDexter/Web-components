@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <meta name="viewport" content="width:device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <title>Template</title>
+    <style>
+      dl { margin-left: 6px; }
+      dt { font-weight: bold; color: #217ac0; font-size: 110% }
+      dd { margin-left: 16px }
+    </style>
+  </head>
+  <body>
+    <h1>element-details - web component using <code>&lt;template&gt;</code> and <code>&lt;slot&gt;</code></h1>
+    <template id="element-details-template">
+      <style>
+        .name {
+          font-weight: bold;
+          color: #217ac0;
+        }
+
+        h4 span {
+          color: white;
+          background-color: #217ac0;
+          border: 1px solid;
+          border-radius: 4px;
+          padding: 4px;
+          margin: 10px 0 -8px 0;
+          font-size: 90%;
+        }
+
+        .attributes { 
+          margin-left: 22px; 
+          font-size: 90% 
+        }
+
+        .attributes p {
+          margin-left: 16px;
+          font-style: italic
+        }
+      </style>
+      <details>
+        <summary>
+          <span>
+            <code class="name">&lt;<slot name="element-name">NEED NAME</slot>&gt;</code>
+            <i class="desc"><slot name="element-desc">NEED DESC</slot></i>
+          </span>
+        </summary>
+        <div class="attributes">
+          <h4><span>Attributes</span></h4>
+          <slot name="attributes"><p>None</p></slot>
+        </div>
+      </details>
+      <hr>
+    </template>
+
+    <element-details>
+      <span slot="element-name">slot</span>
+      <span slot="element-desc">A placeholder inside a web
+        component that users can fill with their own markup,
+        with the effect of composing different DOM trees
+        together.</span>
+      <dl slot="attributes">
+        <dt>name</dt>
+        <dd>The name of the slot.</dd>
+      </dl>
+    </element-details>
+
+    <element-details>
+      <span slot="element-name">template</span>
+      <span slot="element-desc">A mechanism for holding client-
+        side content that is not to be rendered when a page is
+        loaded but may subsequently be instantiated during
+        runtime using JavaScript.</span>
+    </element-details>
+
+  </body>
+</html>

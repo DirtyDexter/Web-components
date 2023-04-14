@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta name="viewport" content="width:device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <title>Template</title>
+  </head>
+  <body>
+    <template id="my-template">
+      <style>
+        p {
+          color: black;
+          background-color: red;
+          padding: 5px;
+        }
+      </style>
+      <p>Hello <slot name="my-slot">Default user</slot> !!.</p>
+    </template>
+
+    <template id="my-template-2">
+      <style>
+        p {
+          color: black;
+          background-color: red;
+          padding: 5px;
+        }
+      </style>
+      <p>Hello <slot>Slot without name</slot> !!.</p>
+    </template>
+
+    <!-- Slot with name -->
+
+    <my-paragraph></my-paragraph>
+
+    <my-paragraph>
+      <span slot="my-slot">Rahul</span>
+    </my-paragraph>
+
+    <my-paragraph>
+      <ul slot="my-slot">
+        <li>Rahul</li>
+        <li>Kumar</li>
+      </ul>
+    </my-paragraph>
+
+    <my-paragraph>
+      <slot name="test">Test</slot>
+    </my-paragraph>
+
+    <!-- Slot without name -->
+
+    <my-paragraph-2></my-paragraph-2>
+
+    <my-paragraph-2>
+      <span>Rahul</span>
+      <span>Kumar</span>
+    </my-paragraph-2>
+
+  </body>
+</html>
