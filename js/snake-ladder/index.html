@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake and Ladder Game</title>
+    <style>
+        .parent {
+          display: flex;
+          justify-content: space-evenly;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(10, 50px);
+            grid-template-rows: repeat(10, 50px);
+            gap: 1px;
+        }
+
+        .cell {
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .dice-btn {
+          margin-top: 10px;
+        }
+
+        .player {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .hide {
+          display: none;
+        }
+
+        .ladder {
+          background-color: #0f0;
+        }
+
+        .snake {
+          background-color: #f00;
+        }
+
+        .symbol {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 6px;
+          line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+      <h1>Snake and Ladder Game</h1>
+      <div id="board"></div>
+      <div class="cell hide" data-val="0"></div>
+      <button onclick="rollDice()" class="dice-btn">Roll Dice</button>
+      <p id="message"></p>
+    </div>
+
+    <script>
+        const boardSize = 10;
+        const board = document.getElementById('board');
+        const message = document.getElementById('message');
+        const player = document.createElement('div');
+        player.className = 'player';
+        //board.appendChild(player);
+
+        let playerPosition = 0;
+        let snakesAndLadders = {
+            2: 23,
+            8: 34,
+            20: 77,
+            29: 9,
+            32: 68,
+            38: 15,
+            41: 79,
+            47: 5,
+            53: 33,
+            62: 37,
+            74: 88,
+            85: 95,
+            86: 54,
+            92: 70,
+            98: 25
+        };
+
+        function createBoard() {
+            let prev;
+            for (let i = boardSize; i > 0; i--) {
+              prev = null;
+              for (let j = 0; j < boardSize; j++) {
+                const id = i*10 - j;
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.innerText = id;
+                cell.setAttribute('data-val', id);
+                if (snakesAndLadders[id]) {
+                  const reNumber = snakesAndLadders[id];
+                  let symbol = getSnakeSymbol();
+                  if (reNumber > id) {
+                    symbol = getLadderSymbol();
+                  }
+                  cell.appendChild(symbol);
+                }
+                if (i % 2 === 0) {
+                  board.appendChild(cell);
+                } else {
+                  if (prev) {
+                    board.insertBefore(cell, prev);
+                    prev = cell;
+                  } else {
+                    board.appendChild(cell);
+                    prev = cell;
+                  }
+                }
+              }
+            }
+        }
+
+        function getLadderSymbol() {
+          const ele = document.createElement('div');
+          ele.className = 'ladder symbol';
+          ele.innerText = 'L';
+          return ele;
+        }
+
+        function getSnakeSymbol() {
+          const ele = document.createElement('div');
+          ele.className = 'snake symbol';
+          ele.innerText = 'S';
+          return ele;
+        }
+
+        function movePlayer(position) {
+            const cell = document.querySelector(`[data-val="${position}"]`);
+            cell.appendChild(player);
+        }
+
+        function checkSnakesAndLadders(position) {
+            if (snakesAndLadders[position]) {
+                const newPosition = snakesAndLadders[position];
+                let messageText = `Oops! You landed on a snake. Go to position ${newPosition}.`
+                if (newPosition > position) {
+                  messageText = `Wow! You landed on a ladder. Go to position ${newPosition}.`
+                }
+                message.innerText = messageText;
+                return newPosition;
+            }
+            return position;
+        }
+
+        function rollDice() {
+            const diceValue = Math.floor(Math.random() * 6) + 1;
+            message.innerText = `You rolled a ${diceValue}.`;
+
+            playerPosition += diceValue;
+            playerPosition = checkSnakesAndLadders(playerPosition);
+
+            if (playerPosition >= boardSize * boardSize) {
+                message.innerText = 'Congratulations! You won!';
+                playerPosition = 0;
+            }
+
+            movePlayer(playerPosition);
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>

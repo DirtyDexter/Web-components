@@ -1,0 +1,224 @@
+<html>
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .clock {
+        --segment-width: 10px;
+        --segment-size: 40px;
+        --segment-color: #f00;
+
+        background-color: #000;
+        border: 10px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        gap: 10px;
+        padding: 20px;
+      }
+
+      .digit-square {
+        border-style: solid;
+        border-width: var(--segment-width);
+        border-color: transparent;
+        width: var(--segment-size);
+        height: var(--segment-size);
+      }
+
+      .digit-square-top {
+        border-bottom-width: calc(var(--segment-width) / 2);
+      }
+
+      .digit-square-bottom {
+        border-top-width: calc(var(--segment-width) / 2);
+      }
+
+      .digit-square-border-top {
+        border-top-color: var(--segment-color);
+      }
+
+      .digit-square-border-left {
+        border-left-color: var(--segment-color);
+      }
+
+      .digit-square-border-right {
+        border-right-color: var(--segment-color);
+      }
+
+      .digit-square-border-bottom {
+        border-bottom-color: var(--segment-color);
+      }
+
+      .separator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+
+      .separator-dot {
+        background-color: var(--segment-color);
+        width: var(--segment-width);
+        height: var(--segment-width);
+        border-radius: var(--segment-width);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <time id="clock" class="clock"></time>
+    </div>
+
+    <script>
+      const ALL_SIDES = [
+        "digit-square-border-top",
+        "digit-square-border-left",
+        "digit-square-border-right",
+        "digit-square-border-bottom",
+      ];
+
+      const NUMBERS_TO_CLASSES = {
+        0: {
+          top: [
+            "digit-square-border-top",
+            "digit-square-border-left",
+            "digit-square-border-right",
+          ],
+          bottom: [
+            "digit-square-border-left",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+        },
+        1: {
+          top: ["digit-square-border-right"],
+          bottom: ["digit-square-border-right"],
+        },
+        2: {
+          top: [
+            "digit-square-border-top",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+          bottom: [
+            "digit-square-border-top",
+            "digit-square-border-left",
+            "digit-square-border-bottom",
+          ],
+        },
+        3: {
+          top: [
+            "digit-square-border-top",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+          bottom: [
+            "digit-square-border-top",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+        },
+        4: {
+          top: [
+            "digit-square-border-left",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+          bottom: ["digit-square-border-right", "digit-square-border-top"],
+        },
+        5: {
+          top: [
+            "digit-square-border-top",
+            "digit-square-border-left",
+            "digit-square-border-bottom",
+          ],
+          bottom: [
+            "digit-square-border-top",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+        },
+        6: {
+          top: [
+            "digit-square-border-top",
+            "digit-square-border-left",
+            "digit-square-border-bottom",
+          ],
+          bottom: ALL_SIDES,
+        },
+        7: {
+          top: ["digit-square-border-top", "digit-square-border-right"],
+          bottom: ["digit-square-border-right"],
+        },
+        8: {
+          top: ALL_SIDES,
+          bottom: ALL_SIDES,
+        },
+        9: {
+          top: ALL_SIDES,
+          bottom: [
+            "digit-square-border-top",
+            "digit-square-border-right",
+            "digit-square-border-bottom",
+          ],
+        },
+      };
+
+      function getSegement(number) {
+        const {top, bottom} = NUMBERS_TO_CLASSES[number];
+        const topClasses = [
+          'digit-square',
+          'digit-square-top',
+          ...top
+        ].join(' ');
+
+        const bottomClasses = [
+          'digit-square',
+          'digit-square-bottom',
+          ...bottom
+        ].join(' ');
+
+        return `<div><div class="${topClasses}"></div><div class="${bottomClasses}"></div></div>`;
+      }
+
+      function getSeparator() {
+        return '<div class="separator"><div class="separator-dot"></div><div class="separator-dot"></div></div>';
+      }
+
+      function updateTime() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        let str = '';
+
+        str +=  getSegement(Math.floor(hours / 10));
+        str +=  getSegement(hours % 10);
+        str +=  getSeparator();
+        str +=  getSegement(Math.floor(minutes / 10));
+        str +=  getSegement(minutes % 10);
+        str +=  getSeparator();
+        str +=  getSegement(Math.floor(seconds / 10));
+        str +=  getSegement(seconds % 10);
+
+        const clockEle = document.getElementById('clock');
+        clockEle.innerHTML = str;
+      }
+
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+  </body>
+</html>
