@@ -1,0 +1,15 @@
+https://www.codingnepalweb.com/dynamic-calendar-html-css-javascript/
+
+https://www.geeksforgeeks.org/design-a-calendar-using-html-and-css/
+
+https://medium.com/@shivambh28/frontend-system-design-design-google-calendar-d63004cd539a
+
+https://codesandbox.io/s/blue-fire-5vukw?file=/index.js
+
+https://codepen.io/aminbe/pen/vYeeVRz
+
+https://jsbin.com/napekisiwe/1/edit?html,css,js,output
+
+https://www.linkedin.com/posts/sunnypuri_javascript-frontend-css-activity-6879654680549445632-Iqx3/
+
+https://devtools.tech/questions/s/build-a-mini-clone-of-google-calendar-or-frontend-coding-challenge-or-javascript-interview-questions-or-devkode-dom-challenge---qid---k86sFLn6Q03N3XSJO96g
