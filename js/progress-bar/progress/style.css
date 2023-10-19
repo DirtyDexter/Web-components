@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+.progress-container {
+  width: 300px;
+  margin: 20px;
+  height: 30px;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 100%;
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
+  /* background-color: rgb(16, 97, 205); */
+  color: rgb(16, 97, 205);
+}

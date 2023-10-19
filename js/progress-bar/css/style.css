@@ -1,0 +1,23 @@
+.progress-container {
+  width: 300px;
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  /* border-radius: 5px; */
+  margin: 20px;
+  position: relative;
+  height: 30px;
+}
+
+.progress-bar {
+  /* height: 30px; */
+  width: 0;
+  /* background-color: rgb(16, 97, 205); */
+  /* border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  color: white; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: background-color 1s ease-in-out 0s;
+}
