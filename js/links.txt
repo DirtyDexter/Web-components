@@ -1,0 +1,24 @@
+Google like type ahead
+
+Google like day calendar 
+
+MS Excelsheet - drag and drop and formula on column / Grid / Table
+
+Dynamic form - validation, different types, grouping of fields like Address
+
+Progress Bar - multiple progress bar  - different color, change color if certain % is done, gradient
+
+Star rating with fractional - 4.7
+
+Tweeter like post - add link, @ show suggestions, tag people, image, 
+
+To Do application - with complex cases - active, strike if completed , after completed move to differnet section
+
+Cart page - products card with price, quantity, size - show price / discount on right side
+
+Design product listing page with filters - pagination
+
+Tic-tac-toe game - with large dimension n*n - whose is winner at complexity O(1)
+
+6 faces cube
+

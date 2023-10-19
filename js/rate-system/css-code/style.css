@@ -1,0 +1,30 @@
+#star-rating {
+  text-align: center;
+  padding: 20px;
+}
+
+.stars-outer {
+  /* position: relative; */
+  display: inline-block;
+  font-size: 48px;
+}
+
+.stars-inner {
+  /* position: absolute; */
+  /* top: 0;
+  left: 0; */
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\2605\2605\2605\2605\2605";
+  color: #FFD700;
+}
+
+.number-rating {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+}
